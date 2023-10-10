@@ -1,0 +1,35 @@
+#chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  #chat-button img {
+    width: 30px;
+    height: 30px;
+  }
+
+.input{
+  padding: 10px;
+}
+
+.input .texto-chat{
+  width: 80%;
+  height: 30px;
+}
+
+.input .send{
+  width: 30px;
+  height: 30px;
+}
