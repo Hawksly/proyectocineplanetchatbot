@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007BFF;
+    background-color: cornflowerblue;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -13,23 +13,76 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+
   }
   
   #chat-button img {
     width: 30px;
     height: 30px;
   }
+  
+
+.btn-light{
+  text-align:left;
+  background-color:#efefef;
+  max-width: 85%;
+  font-family: serif;
+}
+
+.offcanvas-header{
+  background-color:cornflowerblue;
+}
 
 .input{
   padding: 10px;
+  background-color:cornflowerblue;
+  font-family: serif;
 }
 
 .input .texto-chat{
-  width: 80%;
-  height: 30px;
+  width: 85%;
+  height: 35px;
+  border-radius: 10px;
 }
 
 .input .send{
-  width: 30px;
-  height: 30px;
+  width: 20PX;
+  height: 20PX;
+}
+
+.texto{
+  padding: 8px 2px;
+  background-color:#dfdfdf;
+  border-radius: 10px;
+  max-width: 85%;
+  font-family: serif;
+  margin: 0;
+}
+
+.offcanvas-title{
+  font-family: serif;
+  font-weight:900;
+}
+
+.text{
+  padding: 8px 2px;
+  background-color:#dfdfdf;
+  border-radius: 10px;
+  max-width: 85%;
+  font-family: serif;
+  overflow: hidden;
+}
+
+.tex{
+  padding: 8px 2px;
+  background-color:#7ad9f8;
+  border-radius: 10px;
+  max-width: 85%;
+  font-family: serif;
+  margin: 20px 0;
+  margin-left: 70px;
+}
+
+.offcanvas.offcanvas-end{
+  top: 25%;
 }

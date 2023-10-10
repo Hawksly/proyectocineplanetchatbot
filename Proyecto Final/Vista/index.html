@@ -8,13 +8,14 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="/res/css/style.css" rel="stylesheet">
     <script src="/res/js/chatbot.js"></script>
+    <style>#ultimo+div{visibility:hidden;}</style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" 
-                class="d-inline-block align-text-top">
+              <img src="/res/images/Cineplanet_logo_actual.png" alt="Logo" width="45" height="40" 
+              class="d-inline-block align-text-top">
             </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,10 +55,10 @@
             <img src="https://cdn.cineplanet.com.pe/contentAsset/raw-data/2176ddd5-c5d0-41e8-8630-d3340ac6fb87" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="https://cdn.cineplanet.com.pe/contentAsset/raw-data/2bd47c6e-0898-4c82-88e6-324e724c8bbd" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="https://cdn.cineplanet.com.pe/contentAsset/raw-data/eff276f8-ec86-4946-b4a4-76ee358996a9" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -78,15 +79,29 @@
       <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" 
         aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header">
+          <img src="/res/images/Cineplanet_logo_actual.png" alt="Logo" width="40" height="34" 
+                class="d-inline-block align-text-top">
           <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Chatbot de Cineplanet</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <p>Buenas tardes, le saluda el asistente virtual de Cinpelanet, ¿En qué le puedo ayudar?</p>
+          <p class="texto">Buenas tardes, le saluda el asistente virtual de Cinpelanet, ¿En qué le puedo ayudar?</p>
           <button type="button" class="btn btn-light">¿Cuáles son las películas en estreno?</button>
-          <button type="button" class="btn btn-light">¿Cuáles son las próximas películas en emisión?</button>
+          <button type="button" class="btn btn-light">¿Cuáles son las próximas películas en Pre-venta?</button>
           <button type="button" class="btn btn-light">¿Qué promocionen ganaré al pertenecer al programa Socios de Cineplanet?</button>
+
+          <p class="tex">Dime las siguientes peliculas que estaran en Pre-venta</p>
+
+          <ul class="text">
+              <li>Claro, aqui estan las proximas peliculas en Pre-venta:</li>
+              <li> 1.El Exorcista: Creyentes </li>
+              <li> 2.TAYLOR SWIFT THE ERAS TOUR </li>    
+              <li> 3.Crossroads Global Fan Event </li>               
+          </ul>
         </div>
+
+
+      
         <div class="input">
           <input type="text" class="text-bg-light texto-chat" id="user-input" placeholder="Ingrese sus dudas o consultas aquí">
           <button type="button" class="btn btn-primary" onclick="sendMessage()"><img src="/res/images/send.png" 
@@ -100,7 +115,7 @@
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
 
         </section>
-        <section class="">
+        <section class="footer">
           <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
@@ -166,5 +181,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <div id="ultimo"></div>
 </body>
 </html>
