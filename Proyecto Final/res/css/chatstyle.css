@@ -1,85 +1,27 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    background:white;
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
 }
-.chatbox{
-    height: 600px;
-    overflow-y: auto;
-    padding: 15px 20px 70px;
-}
-.chatbox .chat{
+
+.chat-container {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
 }
-.chatbox .bienvenida img{
-    width:20px;
-    height:20px;
-    align-self: flex;
-    text-align: center;
-    line-height: 32px;
-    border-radius: 100px;
-    margin: 0 5px 5px 0;
-}
-.chatbox .chat p{
-    color:white;
-    max-width: 80%;
-    padding: 13px 12px;
-    padding-left: 15px;
-    border-radius: 10px 10px 10px 10px;
-    background: darkblue;
-}
-.chatbox .bienvenida p{
-    color:black;
-    background:rgb(238, 237, 237);
-    border-radius: 10px 10px 10px 10px;
-}
-.chatbox .entrante{
-    margin: 5px 0;
-    justify-content: flex-end;
-}
-.entrada{
-    padding: 5px 20px;
-    position:absolute;
-    display: flex;
-    width: 90%;
-    gap: 5px;
-    bottom:0;
-    border-top: 1px solid rgb(233, 232, 232);
-    background: white;
-}
-.entrada textarea{
-    height: 60px;
-    border: none;
-    outline: none;
-    resize: none;
-    padding: 16px 5px 5px 0;
-}
-.entrada .btnenviar{
-    align-self: flex-end;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    border: none;
-    outline: none;
-    resize: none;
-    background: white;
-    visibility: hidden;
-}
-.entrada textarea:valid ~ button{
-    visibility: visible;
-}
-.btnsend{
-    width: 20px;
-    height: 20px;
-}
+
 #chat-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: darkblue;
+    background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -90,40 +32,152 @@ body{
     justify-content: center;
     align-items: center;
     z-index: 1000;
+}
 
-  }
-  
 #chat-button img {
     width: 30px;
     height: 30px;
 }
-  
-.chatbot {
-    display: none;
-}
 
-.chatbot.active {
-    display: block;
-}
-.offcanvas-header{
-    background: darkblue;
+.offcanvas-header {
+    background: #007bff;
     padding: 16px 0;
     text-align: center;
 }
-.offcanvas-title{
+
+.offcanvas-title {
     align-self: center;
-    color:white;
+    color: #fff;
     font-size: large;
 }
-.icono{
+
+.icono {
     width: 40px;
     height: 40px;
-    border-radius: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
-.offcanvas-body{
-    background:white;
+
+.offcanvas-body {
+    background: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.maxmin{
+
+.maxmin {
+    width: 30px;
+    height: 30px;
+}
+
+.chatbox {
+    overflow-y: auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.chat {
+    display: flex;
+    margin: 10px 0;
+}
+
+.bienvenida img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat p {
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    max-width: 70%;
+}
+
+.bienvenida p {
+    background: #007bff;
+    color: #fff;
+}
+
+.chatbot-message {
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+.with-buttons .botones {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.with-buttons button {
+    background: #04366b;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.entrante {
+    justify-content: flex-end;
+}
+
+.salida p {
+    background: #e5e5ea;
+    color: #000;
+    align-self: flex-end;
+    margin-right: 0;
+    margin-left: auto;
+    clear: both;
+}
+
+.entrada {
+    padding: 10px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.input-group .btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.input-group .btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.input-group .btn img {
     width: 20px;
     height: 20px;
 }
