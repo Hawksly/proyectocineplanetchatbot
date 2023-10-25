@@ -37,29 +37,62 @@ sendButton.addEventListener('click', () => {
     mensajeDiv.innerText = userMessage;
     userMessageDiv.appendChild(mensajeDiv);
 
-    agregarMensajeChatbot('Respuesta');
-
+    verificarRespuesta(userMessage);
     textarea.value = '';
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const maximizeButton = document.getElementById("maximize-chat-button");
-    const maximizeIcon = document.getElementById("maximize-icon");
+function verificarRespuesta(userMessage) {
+  const patronesYAcciones = [
+    { patron: /pel[iíì]culas* de estre[nñ]o/i, accion: mostrarPeliculasEstreno },
+    { patron: /sesi[oó]n en el programa socios/i, accion: ingresarSesionSocios },
+    { patron: /promociones vigente[s]*/i, accion: mostrarPromociones },
+  ];
 
-    let isMaximized = false;
+  let respuestaEncontrada = false;
 
-    maximizeButton.addEventListener("click", function () {
-        if (isMaximized) {
-            chatbot.style.width = "500px";
-            maximizeIcon.src = "/res/images/maximizar.png";
-            isMaximized = false;
-        } else {
-            chatbot.style.width = "90%";
-            maximizeIcon.src = "/res/images/minimizar.png";
-            isMaximized = true;
-        }
-    });
-});
+  for (const item of patronesYAcciones) {
+    if (item.patron.test(userMessage)) {
+      item.accion();
+      respuestaEncontrada = true;
+      break;
+    }
+  }
+
+  if (!respuestaEncontrada) {
+    hacerAlgoPorDefecto();
+    almacenarRespuestaEnBaseDeDatos(userMessage);
+  }
+}
+
+function almacenarRespuestaEnBaseDeDatos(respuesta) {
+  $.ajax({
+    type: "POST",
+    url: "/proyectos/chatbot/Controlador/chatbot.php",
+    data: { text: respuesta },
+    success: function (response) {
+      console.log("Respuesta almacenada en la base de datos.");
+    },
+    error: function () {
+      console.log("Error al almacenar la respuesta en la base de datos.");
+    }
+  });
+}
+
+function mostrarPeliculasEstreno() {
+  agregarMensajeChatbot('Las películas de estreno esta semana son: película 1, película 2, película 3.');
+}
+
+function ingresarSesionSocios() {
+  agregarMensajeChatbot('Por favor, ingrese los siguientes datos: DNI y contraseña.');
+}
+
+function mostrarPromociones() {
+  agregarMensajeChatbot('Actualmente, tenemos una promoción de descuento del 20% en boletos para estudiantes.');
+}
+
+function hacerAlgoPorDefecto() {
+  agregarMensajeChatbot('Lo siento, no puedo ayudarte con este inconveniente. Favor comunícate con el administrador en el siguiente enlace: <a href="https://www.configuroweb.com/contacto/">Contacto</a>');
+}
 
 function agregarMensajeConBotones(mensaje, opciones) {
   const chatbotResponseDiv = document.createElement('div');
@@ -84,15 +117,7 @@ function agregarMensajeConBotones(mensaje, opciones) {
     const boton = document.createElement('button');
     boton.innerText = opcion.text;
     boton.addEventListener('click', () => {
-        if (opcion.text === '¿Cuáles son las películas de estreno?') {
-          agregarMensajeChatbot('Las películas de estreno esta semana son: película 1, película 2, película 3.');
-        } else if (opcion.text === 'Ingresar sesión en el programa Socios') {
-          agregarMensajeChatbot('Correcto, por favor, ingrese los siguientes datos:');
-          agregarMensajeChatbot('Ingrese su DNI: ');
-          waitingForDNI = true;
-        } else if (opcion.text === '¿Cuáles son las promociones vigentes?') {
-          agregarMensajeChatbot('Actualmente, tenemos una promoción de descuento del 20% en boletos para estudiantes.');
-        }
+      agregarMensajeUsuario(opcion.text);
     });
     opcionDiv.appendChild(boton);
   });
@@ -106,6 +131,19 @@ const opciones = [
 
 agregarMensajeConBotones('Buenas tardes, le saluda el asistente virtual de Cineplanet, ¿en qué puedo ayudarle?', opciones);
 
+function agregarMensajeUsuario(text) {
+  const userMessage = text;
+
+  const userMessageDiv = document.createElement('div');
+  userMessageDiv.classList.add('chat', 'salida');
+  chatbox.appendChild(userMessageDiv);
+
+  const mensajeDiv = document.createElement('p');
+  mensajeDiv.innerText = userMessage;
+  userMessageDiv.appendChild(mensajeDiv);
+
+  verificarRespuesta(userMessage);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   const chatBody = document.querySelector(".offcanvas");
