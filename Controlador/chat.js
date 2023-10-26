@@ -43,9 +43,12 @@ sendButton.addEventListener('click', () => {
 
 function verificarRespuesta(userMessage) {
   const patronesYAcciones = [
+    { patron: /pel[iíì]culas*/i && /cartelera/i, accion: mostrarPeliculasCartelera },
     { patron: /pel[iíì]culas* de estre[nñ]o/i, accion: mostrarPeliculasEstreno },
     { patron: /sesi[oó]n en el programa socios/i, accion: ingresarSesionSocios },
-    { patron: /promociones vigente[s]*/i, accion: mostrarPromociones },
+    { patron: /promociones/i && /vigente[s]*/i, accion: mostrarPromociones },
+    { patron: /hola/i, accion: saludo },
+    { patron: /gracias/i, accion: despedida },
   ];
 
   let respuestaEncontrada = false;
@@ -67,7 +70,7 @@ function verificarRespuesta(userMessage) {
 function almacenarRespuestaEnBaseDeDatos(respuesta) {
   $.ajax({
     type: "POST",
-    url: "/proyectos/chatbot/Controlador/chatbot.php",
+    url: "/Controlador/chatbot.php",
     data: { text: respuesta },
     success: function (response) {
       console.log("Respuesta almacenada en la base de datos.");
@@ -78,8 +81,12 @@ function almacenarRespuestaEnBaseDeDatos(respuesta) {
   });
 }
 
+function mostrarPeliculasCartelera() {
+  agregarMensajeChatbot('Las películas en cartelera son: El Exorcista, 12 Horas para el find del mundo, El justiciero Capítulo Final, Sin Aire y Atentado en el Aire.');
+}
+
 function mostrarPeliculasEstreno() {
-  agregarMensajeChatbot('Las películas de estreno esta semana son: película 1, película 2, película 3.');
+  agregarMensajeChatbot('Las películas de estreno son: Atentado en el Aire, Encerrados con el Demonio, La Naranja Mecánica, La Memoria Infinita y Los Asesinos de la Luna.');
 }
 
 function ingresarSesionSocios() {
@@ -87,12 +94,26 @@ function ingresarSesionSocios() {
 }
 
 function mostrarPromociones() {
-  agregarMensajeChatbot('Actualmente, tenemos una promoción de descuento del 20% en boletos para estudiantes.');
+  agregarMensajeChatbot('Actualmente, contamos con las siguientes promociones: 2x1 en entraddas al cine todo el año al tener un número de celular en Entel y Promo Agora Pay: Todos los martes podrás comprar entradas a 9 soles con hasta un 55% de descuento exclusivo pagando con Agora PAY. Para más información puedes ingresar al siguiente link: https://www.cineplanet.com.pe/promociones');
+}
+
+function saludo() {
+  agregarMensajeConBotones('Buenas tardes, le saluda el asistente virtual de Cineplanet, ¿en qué puedo ayudarle?',opciones);
+}
+
+function despedida() {
+  agregarMensajeChatbot('Gracias por utilizar el asistente virtual de Cineplanet, vuelva pronto.');
 }
 
 function hacerAlgoPorDefecto() {
-  agregarMensajeChatbot('Lo siento, no puedo ayudarte con este inconveniente. Favor comunícate con el administrador en el siguiente enlace: <a href="https://www.configuroweb.com/contacto/">Contacto</a>');
+  agregarMensajeConBotones('Que tenga un buen día, ¿puedo ayudarle en algo más?',opciones);
 }
+
+const opciones = [
+  { text: '¿Cuáles son las películas de estreno?' },
+  { text: 'Ingresar sesión en el programa Socios' },
+  { text: '¿Cuáles son las promociones vigentes?' },
+];
 
 function agregarMensajeConBotones(mensaje, opciones) {
   const chatbotResponseDiv = document.createElement('div');
@@ -121,15 +142,10 @@ function agregarMensajeConBotones(mensaje, opciones) {
     });
     opcionDiv.appendChild(boton);
   });
+  textarea.value = '';
 }
 
-const opciones = [
-  { text: '¿Cuáles son las películas de estreno?' },
-  { text: 'Ingresar sesión en el programa Socios' },
-  { text: '¿Cuáles son las promociones vigentes?' },
-];
 
-agregarMensajeConBotones('Buenas tardes, le saluda el asistente virtual de Cineplanet, ¿en qué puedo ayudarle?', opciones);
 
 function agregarMensajeUsuario(text) {
   const userMessage = text;
