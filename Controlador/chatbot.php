@@ -1,10 +1,10 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$database = "db_cine";
+$servername = "localhost";
+$username = "id21290903_root";
+$password = "!Admin123";
+$database = "id21290903_cine";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
@@ -37,4 +37,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $conn->close();
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $sql = "SELECT nombre, latitud, longitud FROM sucursales";
+    $result = $conn->query($sql);
+
+    if (!$result) {
+        die("Error al obtener datos de sucursales: " . $conn->error);
+    }
+
+    $sucursales = array();
+
+    while ($row = $result->fetch_assoc()) {
+        $sucursales[] = $row;
+    }
+
+    if (!empty($sucursales)) {
+        header('Content-Type: application/json');
+        echo json_encode($sucursales);
+    } else {
+        echo "No se encontraron sucursales.";
+    }
+}
+
 ?>

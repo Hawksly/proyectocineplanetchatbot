@@ -33,10 +33,42 @@ body {
     align-items: center;
     z-index: 1000;
 }
+img .promo{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
 
 #chat-button img {
     width: 30px;
     height: 30px;
+}
+
+#chat-button i{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8rem;
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    width: 60px;
+    height: 66px;
+}
+
+#chat-button i::before {
+    content: "\f27a";
+    display: block;
+    margin: 20px 0;
+    transition: all .4s ease-in-out;
+}
+
+#chat-button i:hover::before{
+    margin-top: -28px;
+}
+
+#chat-button i::after{
+    content: "\f27a";
+    display: block;
 }
 
 .offcanvas-header {
@@ -69,6 +101,10 @@ body {
 .maxmin {
     width: 30px;
     height: 30px;
+}
+
+.offcanvas-header i{
+    font-size: 1.5rem;
 }
 
 .chatbox {
@@ -148,8 +184,9 @@ body {
 .input-group {
     display: flex;
     justify-content: space-between;
-    border: 1px solid #ddd;
     border-radius: 20px;
+    padding: 2px 1px;
+    bottom: 0;
     padding: 10px;
 }
 
@@ -158,25 +195,23 @@ body {
     border: none;
     outline: none;
     padding: 5px;
-    border-radius: 20px;
+    resize: none;
+    
 }
 
 .input-group .btn {
-    background: #007bff;
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 5px 15px;
+    padding: 8px 15px;
     cursor: pointer;
+    visibility: hidden;
 }
-.input-group .btn {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 5px 15px;
-    cursor: pointer;
+
+.input-group .form-control:valid ~ .btn{
+    visibility: visible;
 }
+
 .input-group .btn img {
     width: 20px;
     height: 20px;
